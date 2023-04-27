@@ -1,8 +1,13 @@
+from datetime import datetime
+from typing import List
 from urllib.request import urlopen
+
+from bs4 import BeautifulSoup
+
 from src.common import ScrapedData
 
 
-def parse(url: str) -> ScrapedData:
+def scrape(url: str) -> ScrapedData:
     html = urlopen(url).read()
     soup = BeautifulSoup(html, features="html.parser")
 
@@ -19,3 +24,7 @@ def parse(url: str) -> ScrapedData:
     chunks = (phrase.strip() for line in lines for phrase in line.split("  "))
     # drop blank lines
     text = '\n'.join(chunk for chunk in chunks if chunk)
+    return ScrapedData(data=text, url=url, last_modified=datetime.now())
+
+def crawl(url: str) -> List[ScrapedData]:
+    pass
