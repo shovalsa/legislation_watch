@@ -46,3 +46,4 @@ def scrape_aspx(url):
 
 if __name__ == '__main__':
     res = scrape("https://www.gov.il/he/Departments/publications/?OfficeId=e744bba9-d17e-429f-abc3-50f7a8a55667&blockCollector=true&limit=10&publicationType=06311039-a4dc-4457-af46-a8e7dbfbe5a0&skip=0")
+
