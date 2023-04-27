@@ -5,7 +5,7 @@ setup(
     name="lgbtq_aguda",
     version="1.0",
     packages=find_packages(),
-    install_requires=["BeautifulSoup4"],
+    install_requires=["BeautifulSoup4", "PyPDF2"],
     url="",
     license="",
     author="",
