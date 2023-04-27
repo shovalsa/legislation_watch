@@ -8,3 +8,8 @@ class ScrapedData:
     data: str
     last_modified: datetime
 
+@dataclass
+class AnalyzedData:
+    data: str
+    last_modified: datetime
+
