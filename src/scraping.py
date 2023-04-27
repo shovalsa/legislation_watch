@@ -33,8 +33,6 @@ def crawl(url: str) -> List[ScrapedData]:
     pass
 
 
-url = knesset
-
 def scrape_aspx(url):
     # Create an HTML session and render the JavaScript code
     session = HTMLSession()
