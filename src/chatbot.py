@@ -12,6 +12,9 @@ def ask_if_affects_lgbt(text):
              "content": "does the text contain any resolution or suggestion that might affect lgbtq people?"
                         +
                         text
+                        +
+                        "if the response is negative just respond no, otherwise give an explanation why the answer is "
+                        "yes."
              },
         ]
     )
