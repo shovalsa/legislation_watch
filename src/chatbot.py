@@ -1,8 +1,10 @@
 import openai
 
+import api_keys
+
 
 def ask_if_affects_lgbt(text):
-    openai.api_key = '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'
+    openai.api_key = api_keys.openai
 
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
