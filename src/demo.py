@@ -2,13 +2,13 @@ import streamlit as st
 import requests
 import json
 # from scraping import scrape_aspx, scrape, fetch
-from summarize import load_model, summarize
+# from summarize import load_model, summarize
 # from find_by_key import parse_key_words
 
 default_url = "https://www.gov.il/he/Departments/policies?OfficeId=e744bba9-d17e-429f-abc3-50f7a8a55667&blockCollector=true&limit=10&PmoMinistersComittee=a0d9709c-f07d-4b0e-8c48-0939643eb020&skip=0"
-with open('secrets/tokens.json', 'r') as f:
-    tokens = json.load(f)
-    api_token = tokens['HF']
+# with open('secrets/tokens.json', 'r') as f:
+#    tokens = json.load(f)
+#    api_token = tokens['HF']
 
 
 keywords = [
@@ -60,17 +60,20 @@ with st.sidebar:
 
 
 def is_relevant(text, kwords):
-    excerpts = text.split(". ")
-    for i, excerpt in enumerate(excerpts):
-        if any(k in text for k in kwords):
+    paragraphs = text.split("\n ")
+    for paragraph in paragraphs:
+        text_to_print = ""
+        is_para_relevant = False
+        for sentence in paragraph.split('. '):
+            if any(k in text for k in kwords):
+                text_to_print += f"<b>{sentence}</b>. "
+                is_para_relevant = True
+            else:
+                text_to_print += sentence + ". "
+
+        if is_para_relevant:
             st.write(f'this text contains lgbtq relevant text: ')
-            text_to_print = ""
-            if i > 0:
-                text_to_print += excerpts[i-1] + ". "
-            text_to_print += f"<b>{excerpt}</b>. "
-            if i < len(excerpts):
-                text_to_print += excerpts[i+1] + "."
-            st.markdown(text_to_print, unsafe_allow_html=True)
+            st.markdown(text_to_print + "\n", unsafe_allow_html=True)
 
 model_name = "google/mt5-small"
 # model_name = "csebuetnlp/mT5_multilingual_XLSum"
@@ -94,7 +97,7 @@ def main():
 if __name__ == '__main__':
     placeholder = st.empty()
     placeholder.text("wait while model is loading...")
-    model, tokenizer = load_model(model_name)
+    # model, tokenizer = load_model(model_name)
 
     placeholder.text('model loaded')
 
