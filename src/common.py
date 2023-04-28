@@ -6,5 +6,10 @@ from datetime import datetime
 class ScrapedData:
     url: str
     data: str
-    last_modified: datetime
+    last_modified: datetime = datetime.now()
 
+
+@dataclass
+class AnalyzedData:
+    data: str
+    last_modified: datetime
